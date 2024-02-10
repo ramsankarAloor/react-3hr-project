@@ -18,8 +18,13 @@ const AddProduct = (props) => {
       category : categoryRef.current.value
     }
 
-    console.log(productInfo)
+    productIdRef.current.value = ''
+    sellingPriceRef.current.value = ''
+    productNameRef.current.value = ''
+    categoryRef.current.value = 'Electronics'
+    
   }
+  
   return (
     <Card className={styles.input}>
       <form onSubmit={onSubmitHandler}>
