@@ -11,12 +11,18 @@ const AddProduct = (props) => {
 
   const onSubmitHandler=event=>{
     event.preventDefault()
+    const productId = productIdRef.current.value
+
     const productInfo = {
-      productId : productIdRef.current.value,
+      productId: productId,
       sellingPrice : sellingPriceRef.current.value,
       productName : productNameRef.current.value,
       category : categoryRef.current.value
     }
+
+    localStorage.setItem(productId, JSON.stringify(productInfo))
+
+    props.onAddProduct(productInfo)
 
     productIdRef.current.value = ''
     sellingPriceRef.current.value = ''
@@ -24,7 +30,7 @@ const AddProduct = (props) => {
     categoryRef.current.value = 'Electronics'
     
   }
-  
+
   return (
     <Card className={styles.input}>
       <form onSubmit={onSubmitHandler}>
@@ -40,7 +46,7 @@ const AddProduct = (props) => {
         <label htmlFor="category">Choose category</label>
         <select ref={categoryRef} id="category">
           <option value="Electronics">Electronics</option>
-          <option value="Food Item">Food item</option>
+          <option value="Food item">Food item</option>
           <option value="Skin care">Skin care</option>
         </select>
 

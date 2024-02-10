@@ -1,15 +1,18 @@
-import Card from '../UI/Card';
-import styles from './ListCard.module.css'
+import Card from "../UI/Card";
+import styles from "./ListCard.module.css";
+import ListElement from "./ListElement";
 
-const FoodItemsList = props => {
+const FoodItemsList = (props) => {
+  const foodItemsList = props.foodItems.map((item) => (
+    <ListElement item={item} key={item.productId}/>
+  ));
 
-    // const electronicsList = props.electronicsItems.map(item => <ListElement />)
-
-    return (
-        <Card className={styles.input}>
-            <h3>Food Items</h3>
-        </Card>
-    )
-}
+  return (
+    <Card className={styles.products}>
+      <h3>Food Items</h3>
+      <ul>{foodItemsList}</ul>
+    </Card>
+  );
+};
 
 export default FoodItemsList;
