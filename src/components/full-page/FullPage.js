@@ -10,13 +10,31 @@ const FullPage = (props) => {
   const [foodItems, setFoodItems] = useState([]);
   const [skincare, setSkincare] = useState([]);
 
+  const deleteHandlerElectronics = (id) => {
+    const updated = electronics.filter((item) => item.productId !== id);
+    setElectronics(updated);
+    localStorage.removeItem(id);
+  };
+
+  const deleteHandlerFoodItems = (id) => {
+    const updated = foodItems.filter((item) => item.productId !== id);
+    setFoodItems(updated);
+    localStorage.removeItem(id);
+  };
+
+  const deleteHandlerSkincare = (id) => {
+    const updated = foodItems.filter((item) => item.productId !== id);
+    setSkincare(updated);
+    localStorage.removeItem(id);
+  };
+
   const addProductHandler = (productInfoObj) => {
     if (productInfoObj.category === "Electronics") {
       setElectronics((prevElectronics) => [productInfoObj, ...prevElectronics]);
-    } else if(productInfoObj.category === "Food item"){
+    } else if (productInfoObj.category === "Food item") {
       setFoodItems((prevFoodItems) => [productInfoObj, ...prevFoodItems]);
-    }else {
-      setSkincare( (prevSkincare)=> [productInfoObj, ...prevSkincare])
+    } else {
+      setSkincare((prevSkincare) => [productInfoObj, ...prevSkincare]);
     }
   };
 
@@ -26,9 +44,18 @@ const FullPage = (props) => {
         <AddProduct onAddProduct={addProductHandler} />
       </div>
       <div className={styles["right-half"]}>
-        <ElectronicsList electronicsItems={electronics} />
-        <FoodItemsList foodItems={foodItems} />
-        <SkincareList skincareItems={skincare}/>
+        <ElectronicsList
+          electronicsItems={electronics}
+          deleteHandler={deleteHandlerElectronics}
+        />
+        <FoodItemsList
+          foodItems={foodItems}
+          deleteHandler={deleteHandlerFoodItems}
+        />
+        <SkincareList
+          skincareItems={skincare}
+          deleteHandler={deleteHandlerSkincare}
+        />
       </div>
     </>
   );

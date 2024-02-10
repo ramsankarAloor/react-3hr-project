@@ -4,7 +4,7 @@ import ListElement from "./ListElement";
 
 const FoodItemsList = (props) => {
   const foodItemsList = props.foodItems.map((item) => (
-    <ListElement item={item} key={item.productId}/>
+    <ListElement item={item} key={item.productId} deleteHandler={props.deleteHandler}/>
   ));
 
   return (
