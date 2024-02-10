@@ -1,0 +1,15 @@
+.left-half{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+}
+
+.right-half{
+    position: fixed;
+    left: 50vw;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+}
